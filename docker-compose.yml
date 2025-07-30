@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  webstack-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8080:8080"
+    environment:
+      - GIN_MODE=debug
+    volumes:
+      - ./config:/root/config:ro
+    networks:
+      - webstack
+
+  # Example agent configuration (for testing)
+  webstack-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    # No environment variables needed - agent is standalone
+    depends_on:
+      - webstack-server
+    networks:
+      - webstack
+
+networks:
+  webstack:
+    driver: bridge

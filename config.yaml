@@ -1,0 +1,12 @@
+# Webstack Configuration
+server:
+  port: 9443
+  host: "0.0.0.0"
+  public_url: "https://localhost:9443"
+  tls:
+    enabled: false
+    cert_file: ""
+    key_file: ""
+
+agent:
+  # Agent configuration can be added here as needed
